@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.hdwallpapers.in/download/cruise_ships_on_port_under_purple_and_blue_sky_hd_cruise_ship-1920x1080.jpg') center/cover no-repeat;
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            width: 350px;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+
+        .switch-form {
+            margin-top: 10px;
+            color: #555;
+        }
+
+        .terms-checkbox {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+            display: flex;
+            
+        }
+        .checkbox{
+            margin-left: 10px;
+            margin-right: 10px;
+            align-items: center;
+        }
+        .terms-checkbox input {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container" id="login-form">
+        <h2>Login</h2>
+        <form action="#" method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p class="switch-form">Don't have an account? <a href="#" onclick="toggleForm('register-form')">Register</a></p>
+    </div>
+
+    <div class="form-container" id="register-form" style="display: none;">
+        <h2>Register</h2>
+        <form action="#" method="post">
+            <input type="text" name="fname" placeholder="First name" required>
+            <input type="text" name="sname" placeholder="Surname" required>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Emali" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            <div class="terms-checkbox">
+                <div class="checkbox"><input type="checkbox" id="termsCheckbox" required></div>
+                <label for="termsCheckbox">I agree to the <a href="terms_and_conditions.html" target="_blank">Terms and Conditions</a></label>
+            </div>
+            <button type="submit">Register</button>
+            
+        </form>
+        <p class="switch-form">Already have an account? <a href="#" onclick="toggleForm('login-form')">Login</a></p>
+    </div>
+
+    <script>
+        function toggleForm(formId) {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('register-form').style.display = 'none';
+
+            document.getElementById(formId).style.display = 'block';
+        }
+        function simulateLogin() {
+            var username = document.getElementsByName('username')[0].value;
+            var password = document.getElementsByName('password')[0].value;
+            
+            // Simulate server-side validation
+            if (username === 'example' && password === 'password') {
+                document.getElementById('login-error-message').innerText = '';
+                return true; // Allow form submission
+            } else {
+                document.getElementById('login-error-message').innerText = 'Incorrect username or password';
+                return false; // Prevent form submission
+            }
+        }
+
+        function simulateRegistration() {
+            var username = document.getElementsByName('username')[0].value;
+            
+            // Simulate server-side validation
+            if (username === 'example') {
+                document.getElementById('register-error-message').innerText = 'Username already exists';
+                return false; // Prevent form submission
+            } else {
+                document.getElementById('register-error-message').innerText = '';
+                return true; // Allow form submission
+            }
+        }
+    </script>
+
+</body>
+</html>
